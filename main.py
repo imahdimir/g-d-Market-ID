@@ -7,7 +7,6 @@
 ##
 
 from githubdata import GithubData
-from mirutil.funcs import norm_fa_str as norm
 from mirutil.funcs import save_df_as_a_nice_xl as sxl
 from mirutil.funcs import read_data_according_to_type as rdata
 
@@ -19,7 +18,6 @@ mktid = 'MarketId'
 name = 'Name'
 
 def main() :
-
 
   pass
 
@@ -33,11 +31,9 @@ def main() :
   ##
   df = df[[mktid, name]]
   ##
-  df = df.applymap(norm)
-  ##
   df = df.sort_values([mktid, name])
   ##
-  df = df.drop_duplicates()
+  df = df.drop_duplicates(subset = mktid)
   ##
   sxl(df , fpn)
   ##
