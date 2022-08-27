@@ -1,32 +1,25 @@
 ##
 
-"""
-
-  """
-
-##
 
 from githubdata import GithubData
-from mirutil.funcs import save_df_as_a_nice_xl as sxl
-from mirutil.funcs import read_data_according_to_type as rdata
+from mirutil.df_utils import save_df_as_a_nice_xl as sxl
+from mirutil.df_utils import read_data_according_to_type as rdata
 
 
-ufm_repo_url = 'https://github.com/imahdimir/d-uniq-Final-Markets'
-cur_module_repo = 'https://github.com/imahdimir/gov-d-uniq-Final-Markets'
+rp_url = 'https://github.com/imahdimir/d-Final-Markets-ID'
 
 mktid = 'MarketId'
 name = 'Name'
 
 def main() :
-
   pass
 
   ##
-  ufm = GithubData(ufm_repo_url)
-  ufm.clone()
+
+  rp = GithubData(rp_url)
+  rp.clone()
   ##
-  fpn = ufm.data_filepath
-  ##
+  fpn = rp.data_filepath
   df = rdata(fpn)
   ##
   df = df[[mktid, name]]
@@ -37,13 +30,20 @@ def main() :
   ##
   sxl(df , fpn)
   ##
-  commit_msg = 'sorted'
+  cur_module_repo = 'https://github.com/' + rp.usr + '/' + 'gov-'+ rp.repo_name
+  ##
+  commit_msg = 'checked'
   commit_msg += f' by repo: {cur_module_repo}'
 
-  ufm.commit_push(commit_msg)
+  rp.commit_push(commit_msg)
   ##
-  ufm.rmdir()
+
+
+  rp.rmdir()
 
   ##
+
+
+##
 
 ##
